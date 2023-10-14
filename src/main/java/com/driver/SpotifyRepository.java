@@ -54,36 +54,42 @@ public class SpotifyRepository {
     }
 
     public Album createAlbum(String title, String artistName) {
-        Artist artist = null;
-        for (Artist a : artists) {
-            if (a.getName().equals(artistName)) {
-                artist = a;
+        Artist artist1 = null;
+        for(Artist artist : artists){
+            if(artist.getName()==artistName){
+                artist1 = artist;
                 break;
             }
         }
-        if (artist == null) {
-            artist = createArtist(artistName);
+        if(artist1 == null){
+            artist1 = createArtist(artistName);
             Album album = new Album();
             album.setTitle(title);
             album.setReleaseDate(new Date());
+
             albums.add(album);
+
             List<Album> list = new ArrayList<>();
             list.add(album);
-            artistAlbumMap.put(artist, list);
+            artistAlbumMap.put(artist1,list);
             return album;
-        } else {
+        }
+        else{
             Album album = new Album();
             album.setTitle(title);
             album.setReleaseDate(new Date());
+
             albums.add(album);
+
             List<Album> list = new ArrayList<>();
-            if (list == null) {
+            if(list == null){
                 list = new ArrayList<>();
             }
             list.add(album);
-            artistAlbumMap.put(artist, list);
+            artistAlbumMap.put(artist1 ,list);
             return album;
-        }
+
+            }
     }
 
     public Song createSong(String title, String albumName, int length) throws Exception {
